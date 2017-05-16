@@ -1,0 +1,6 @@
+---
+- hosts: all
+  become: yes
+  roles:
+  - role: znz.docker
+    #docker_ce_channel: "stable"

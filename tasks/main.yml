@@ -1,0 +1,15 @@
+---
+# tasks file for ansible-role-docker
+- name: "Install apt-transport-https,ca-certificates,curl"
+  apt: name=apt-transport-https,ca-certificates,curl
+- name: "Install software-properties-common"
+  apt: name=software-properties-common
+  when: ( ansible_lsb.codename == "jessie" or ansible_lsb.codename == "stretch" )
+
+- name: "Install docker-ce"
+  include: "docker-ce.yml"
+  when: docker_ce_channel is defined and docker_ce_channel is not none
+
+- name: "Install docker-engine"
+  include: "docker-engine.yml"
+  when: docker_ce_channel is not defined or docker_ce_channel is none
