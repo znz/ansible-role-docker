@@ -13,3 +13,12 @@
 - name: "Install docker-engine"
   include: "docker-engine.yml"
   when: docker_ce_channel is not defined or docker_ce_channel is none
+
+- name: "/etc/docker/daemon.json"
+  template:
+    src: daemon.json.j2
+    dest: /etc/docker/daemon.json
+    owner: root
+    group: root
+    mode: 0600
+  notify: restart docker

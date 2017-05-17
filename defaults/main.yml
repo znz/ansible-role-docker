@@ -3,3 +3,5 @@
 #docker_ce_channel: ~
 #docker_ce_channel: "stable"
 #docker_ce_channel: "edge"
+
+docker_daemon_json: "{}"

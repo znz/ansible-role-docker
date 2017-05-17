@@ -10,6 +10,7 @@ Setup [Docker](https://www.docker.com/).
 ## Role Variables
 
 - `docker_ce_channel`: If set, use Docker CE channel, or use `docker-engine`. `"stable"`, `"edge"`, or `~` (null).
+- `docker_daemon_json`: Content of `/etc/docker/daemon.json`.
 
 ## Dependencies
 
@@ -31,6 +32,9 @@ Another example:
       roles:
       - role: znz.docker
         docker_ce_channel: "stable"
+        docker_daemon_json: >-
+          {"insecure-registries":["registry.example.test:5000"]}
+
 
 ## License
 
