@@ -14,11 +14,17 @@
   include: "docker-engine.yml"
   when: docker_ce_channel is not defined or docker_ce_channel is none
 
+- name: "Read daemon.json"
+  shell: |
+    cat /etc/docker/daemon.json || echo '{}'
+  register: result
+  changed_when: no
+- set_fact: docker_daemon_json="{{ result.stdout | from_json }}"
 - name: "/etc/docker/daemon.json"
   template:
     src: daemon.json.j2
     dest: /etc/docker/daemon.json
     owner: root
     group: root
-    mode: 0600
+    mode: 0400
   notify: restart docker

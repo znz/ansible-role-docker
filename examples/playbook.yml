@@ -4,3 +4,6 @@
   roles:
   - role: znz.docker
     #docker_ce_channel: "stable"
+    docker_daemon_config:
+      insecure-registries:
+      - "registry.example.test:5000"
